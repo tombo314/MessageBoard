@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果</title>
+</head>
+<body>
+    <h1>検索結果</h1>
+    <form method="get" action="{% url 'board:search_posts' %}">
+        <input type="text" name="query" value="{{ query }}" placeholder="検索...">
+        <button type="submit">検索</button>
+    </form>
+
+    <ul>
+        {% for post in results %}
+            <li>{{ post.title }}: {{ post.content }}</li>
+        {% empty %}
+            <li>結果が見つかりませんでした。</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
